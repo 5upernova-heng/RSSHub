@@ -898,7 +898,9 @@
                     if (nodeId === 'GKMQC26VQQMM8XSW') {
                         return '/amazon/kindle/software-updates';
                     }
-                } } ] },
+                } } ],
+    aws:[ { title:"AWS blogs",
+        docs:"https://docs.rsshub.app/blogs.html#amazon" } ] },
   "android.com":{ _name:"Android Developers",
     developer:[ { title:"SDK Platform Tools release notes",
         docs:"https://docs.rsshub.app/program-update.html#android-sdk-platform-tools-release-notes",
@@ -2811,7 +2813,11 @@
       { title:"小组-精华",
         docs:"https://docs.rsshub.app/social-media.html#dou-ban",
         source:"/group/:groupid",
-        target:"/douban/group/:groupid/elite" } ],
+        target:"/douban/group/:groupid/elite" },
+      { title:"榜单与集合",
+        docs:"https://docs.rsshub.app/social-media.html#douban",
+        source:[ "/subject_collection/:type" ],
+        target:"/douban/list/:type" } ],
     jobs:[ { title:"社会招聘",
         docs:"https://docs.rsshub.app/social-media.html#dou-ban",
         source:"/jobs/social",
@@ -8155,6 +8161,17 @@
         docs:"https://docs.rsshub.app/program-update.html#oo-software-changelog",
         source:[ "/en/changelog" ],
         target:(params, url) => `/oo-software/changelog/${new URL(url).match(/\/en\/(.*?)\/changelog/)[1]}` } ] },
+  "openai.com":{ _name:"OpenAI",
+    ".":[ { title:"Blog",
+        docs:"https://docs.rsshub.app/en/new-media.html#openai",
+        source:"/blog",
+        target:(_, url) => {
+                    const topics = new URL(url).searchParams.get('topics');
+                    if (topics) {
+                        return `/openai/blog/${topics}`;
+                    }
+                    return '/openai/blog';
+                } } ] },
   "openwrt.org":{ _name:"Openwrt",
     ".":[ { title:"Model Releases",
         docs:"https://docs.rsshub.app/program-update.html#openwrt",
@@ -8219,6 +8236,14 @@
         docs:"https://docs.rsshub.app/programming.html#kai-yuan-zhong-guo",
         source:[ "/u/:uid" ],
         target:"/oschina/u/:uid" } ] },
+  "oshwhub.com":{ _name:"立创开源硬件平台",
+    ".":[ { title:"开源广场",
+        docs:"https://docs.rsshub.app/other.html#li-chuang-kai-yuan-ying-jian-ping-tai",
+        source:[ "/explore" ],
+        target:(_, url) => {
+                    const sortType = new URL(url).searchParams.get('projectSort');
+                    return sortType ? `/oshwhub/${sortType}` : '';
+                } } ] },
   "oup.com":{ _name:"Oxford University Press",
     academic:[ { title:"期刊",
         docs:"https://docs.rsshub.app/journal.html#oxford-university-press",
@@ -9810,7 +9835,20 @@
         docs:"https://docs.rsshub.app/university.html#xi-nan-jiao-tong-da-xue",
         source:[ "/career",
           "/" ],
-        target:"/swjtu/jyzpxx" } ] },
+        target:"/swjtu/jyzpxx" } ],
+    jwc:[ { title:"教务处通知",
+        docs:"https://docs.rsshub.app/university.html#xi-nan-jiao-tong-da-xue",
+        source:[ "/vatuu/WebAction",
+          "/" ],
+        target:"/swjtu/jwc" } ],
+    xg:[ { title:"扬华素质网",
+        docs:"https://docs.rsshub.app/university.html#xi-nan-jiao-tong-da-xue",
+        source:[ "/web/Home/PushNewsList",
+          "/web/Home/NewsList",
+          "/web/Home/ColourfulCollegeNewsList",
+          "/web/Publicity/List",
+          "/" ],
+        target:"/swjtu/xg" } ] },
   "swpu.edu.cn":{ _name:"西南石油大学",
     ".":[ { title:"办公网",
         docs:"https://docs.rsshub.app/university.html#xi-nan-shi-you-da-xue",
@@ -10044,6 +10082,11 @@
         source:[ "/model3/design",
           "/" ],
         target:"/tesla/price" } ] },
+  "theatlantic.com":{ _name:"The Atlantic",
+    www:[ { title:"新闻",
+        docs:"https://docs.rsshub.app/traditional-media.html#the-atlantic",
+        source:"/:category",
+        target:"/theatlantic/:category" } ] },
   "thecatcity.com":{ _name:"貓奴日常",
     ".":[ { title:"貓物分享｜流行小物、貓咪用品",
         docs:"https://docs.rsshub.app/new-media.html#mao-nu-ri-chang",
